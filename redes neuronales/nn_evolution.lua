@@ -51,7 +51,6 @@ while  mejorl ~=0 and  mejorl > criterio   do -- Evoluciona
     tmp=nn.mse(xor_outputs,prediciones)
     if tmp< mejorl then
        mejorl=tmp
-	   --mejorb = nn.deepCopy(poblacionbias[i])
        mejor=nn.deepCopy(poblacion[i])
 	   print("se encontro mejor",tmp)
 		prediciones1 = {}
@@ -62,21 +61,15 @@ while  mejorl ~=0 and  mejorl > criterio   do -- Evoluciona
   end
 
 
- -- print(nn.media(errores))
   local tablaord,indices =nn.ordenar(errores)
- -- for k,v in pairs(tablaord) do
-    --  print(k,v)
---  end
-  --print(tablaord[1],tablaord[45])
+
   for ia=0,elite do
 	table.insert(tmppob,poblacion[indices[#poblacion-ia]])
---	table.insert(tmpbias,poblacionbias[indices[#poblacion-ia]])
   end
   for o = 0,2 do
 	local redtt,_= nn.crear_nn(arch)
 	table.insert(tmppob,redtt)
   end
-  --print(#tmppob,'a')
   while #tmppob ~=#poblacion do
      local m=#tmppob
      local x1,y1,z1= nn.RNG(1,m),nn.RNG(1,m),nn.RNG(1,m)
@@ -90,27 +83,22 @@ while  mejorl ~=0 and  mejorl > criterio   do -- Evoluciona
 		c1,c2 = nn.cross_over(tmppob[x1],tmppob[y1],0.45)
 
 	end
-
---	print(b1,b2)
 	 local x1,y1= nn.RNG(1,m),nn.RNG(1,m),nn.RNG(1,m)
      c1=nn.mutar(c1,tmppob[x1],tmppob[y1],0.5,4)
 	  local x1,y1= nn.RNG(1,m),nn.RNG(1,m),nn.RNG(1,m)
        c2=nn.mutar(c2,tmppob[x1],tmppob[y1],0.5,4)
      if nn.RNG(0,1)==1 then
         table.insert(tmppob,c1)
-	--	table.insert(tmpbias,b1)
      else
         table.insert(tmppob,c2)
-		--table.insert(tmpbias,b2)
      end
   end
- -- print(#tmppob,'b')
+
   poblacion=nn.deepCopy(tmppob)
- -- poblacionbias=nn.deepCopy(tmpbias)
+
 end
 print(nn.predecir(xor_inputs[1],mejor,act)[1])
---local ordfinal,indicesfinal=nn.ordenar(errores)
---mejor_p=poblacion[indicesfinal[#indicesfinal]]
+
 local prediciones1={}
 for k,v in pairs(xor_inputs) do
    local kkk=nn.deepCopy( nn.predecir(v,mejor,act) )
