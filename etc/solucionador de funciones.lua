@@ -419,5 +419,5 @@ end
 print("toma en cuenta solo las soluciones con un mse cercano a 0")
 print("presiona enter para cerrar")
 print(os.clock())
---x=app.toast("listo")
+
 local f = io.read()
