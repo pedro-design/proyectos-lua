@@ -3,7 +3,7 @@ local nn =require('NN_genetico')
 local xor_inputs ={{0.1,0.1},{1,0.1},{0.1,1},{1,1}}
 local xor_outputs ={{0,1},{1,0},{1,0},{0,1}}
 local test={{0.1,2},{0.9,1},{0.87,0.5},{0.3,0.7}}
-local arch={2,4,2}
+local arch={2,4,2}-- esta es la arquitectura de la red
 local red,act= nn.crear_nn(arch)
 local poblacion={}
 local poblacionbias = {}
@@ -12,10 +12,10 @@ local ind=200
 local mejor={}
 local mejorl=math.huge
 local porcentage=30
-nn.hact("leaky_relu")
-nn.out_act("sigmoid")
-print(nn.mse(test,xor_outputs),"###")
-local elite= math.floor((ind*porcentage)/100)
+nn.hact("leaky_relu") -- las activaciones ocultas
+nn.out_act("sigmoid")-- la activacion de la capa final de la red
+print(nn.mse(test,xor_outputs),"###")-- test de mse
+local elite= math.floor((ind*porcentage)/100) -- porcentajes de selecion
 
 for i=0,ind do
     local p,_,b= nn.crear_nn(arch)
@@ -31,7 +31,7 @@ local printinterval = 10
 local wathcdog = 0
 local criterio	 = -0.01
 local inicio = os.clock()
-while  mejorl ~=0 and  mejorl > criterio   do
+while  mejorl ~=0 and  mejorl > criterio   do -- Evoluciona
   errores={}
   tmppob={}
   tmpbias = {}
@@ -123,7 +123,7 @@ for k,v in pairs(prediciones1) do
     print(v[1],v[2])
 
 end
-print("----------------------------------")
+print("----------------------------------")-- imprime los pesos de la mejor red
 for k,v in pairs(mejor ) do
 	for k1,v1 in pairs(v) do
 		for k2,v2 in pairs(v1) do
