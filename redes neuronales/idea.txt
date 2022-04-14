@@ -1,0 +1,5 @@
+estos archivos son de lo que aprendi sobre algoritmos geneticos y las redes neuronales
+
+incluye una libreria llamada NN_genetico.lua y el ejemplo NN_evolucion.lua, tomando como problema XOR
+
+al final de ejecutar el ejemplo, deberia imprimir los pesos de la red que mejor funcionan
