@@ -5,7 +5,7 @@ local k = string.byte(key)
 
 local msg = "test test testing"
 
-print("🌽")
+
 
 
 
