@@ -1,4 +1,3 @@
---print(os.time())
 
 local function mse(x,y) -- el error medio cuadrado
  if x==nil or y==nil then
