@@ -20,18 +20,18 @@ end
 
 
 
-
+local x,y = {{0,1},{1,1},{0,0},{1,0}},{{1},{0},{0},{1}}
 local test_data =  nn.crear_ventana(x,5)
-local arch={5,8,1} -- arquitectura de la red
+local arch={2,8,1} -- arquitectura de la red
 local numero_de_individuos = 50
 local criterio = 0.25 -- este es el criterio de el error minimo para detenerse, si es negativo, no se detiene hasta que ya no se mejore mas el error
-local modo_rnn = true -- si decimos que no, solo predecimos los datos de manera clasica, si es verdadero, nos movemos a traves de una serie de longitud N y sumamos todas las predicciones
+local modo_rnn = false -- si decimos que no, solo predecimos los datos de manera clasica, si es verdadero, nos movemos a traves de una serie de longitud N y sumamos todas las predicciones
 local porcentaje_elite = 30 -- porcentage de individuos elite
 local  minimo_hyperparametro = 0.01
 local hyperparametro = 1
 
 nn.hact("leaky_relu")-- activacion de las capas ocultas
-nn.out_act("sigmoid")-- activacion de la salida
+nn.out_act("leaky_relu")-- activacion de la salida
 
 local lua_se_bloquea_sin_wait = false
 
