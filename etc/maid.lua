@@ -1,4 +1,4 @@
-
+-- esta es una libreria multitasking para lua 
 local maid = {
 	tasks = {},
 	running_coroutines = {}
